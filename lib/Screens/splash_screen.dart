@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/Screens/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -21,7 +23,7 @@ class SplashScreen extends StatelessWidget {
               children: const [
                 Center(
                   child: Icon(
-                    Icons.abc,
+                    Icons.bolt,
                     color: Color(0xfffeea08),
                     size: 200,
                   ),
@@ -30,7 +32,7 @@ class SplashScreen extends StatelessWidget {
                     left: 20,
                     top: 150,
                     child: Icon(
-                      Icons.abc,
+                      Icons.bolt,
                       color: Color(0xfffeea08),
                       size: 70,
                     )),
@@ -38,7 +40,7 @@ class SplashScreen extends StatelessWidget {
                     right: 20,
                     top: 50,
                     child: Icon(
-                      Icons.abc,
+                      Icons.bolt,
                       color: Color(0xfffeea08),
                       size: 70,
                     )),
@@ -59,7 +61,7 @@ class SplashScreen extends StatelessWidget {
                       size: 15,
                     )),
                 Positioned(
-                    left: 30,
+                    left: 50,
                     top: 80,
                     child: Icon(
                       Icons.circle,
@@ -71,20 +73,23 @@ class SplashScreen extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            width: MediaQuery.of(context).size.width * 0.5,
+            width: MediaQuery.of(context).size.width * 0.55,
             height: MediaQuery.of(context).size.height * 0.3,
             child: const Text(
               "Get weather updates on the go!",
               style: TextStyle(
                   color: Color(0xffffffff),
                   fontWeight: FontWeight.w700,
-                  fontSize: 22),
+                  fontSize: 24),
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
               child: Container(
                 margin: const EdgeInsets.only(right: 20),
                 width: 50,
