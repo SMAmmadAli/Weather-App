@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/Screens/Home_Screen/home_screen.dart';
 
+import '../utils/colors.dart';
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -20,11 +22,11 @@ class SplashScreen extends StatelessWidget {
                         MediaQuery.of(context).size.width, 100.0)),
                 color: const Color(0xff111111)),
             child: Stack(
-              children: const [
+              children: [
                 Center(
                   child: Icon(
                     Icons.bolt,
-                    color: Color(0xfffeea08),
+                    color: MyColors.yellow,
                     size: 200,
                   ),
                 ),
@@ -33,7 +35,7 @@ class SplashScreen extends StatelessWidget {
                     top: 150,
                     child: Icon(
                       Icons.bolt,
-                      color: Color(0xfffeea08),
+                      color: MyColors.yellow,
                       size: 70,
                     )),
                 Positioned(
@@ -41,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                     top: 50,
                     child: Icon(
                       Icons.bolt,
-                      color: Color(0xfffeea08),
+                      color: MyColors.yellow,
                       size: 70,
                     )),
                 Positioned(
@@ -49,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                     top: 135,
                     child: Icon(
                       Icons.circle,
-                      color: Color(0xfffeea08),
+                      color: MyColors.yellow,
                       size: 15,
                     )),
                 Positioned(
@@ -57,7 +59,7 @@ class SplashScreen extends StatelessWidget {
                     top: 180,
                     child: Icon(
                       Icons.circle,
-                      color: Color(0xfffeea08),
+                      color: MyColors.yellow,
                       size: 15,
                     )),
                 Positioned(
@@ -65,7 +67,7 @@ class SplashScreen extends StatelessWidget {
                     top: 80,
                     child: Icon(
                       Icons.circle,
-                      color: Color(0xfffeea08),
+                      color: MyColors.yellow,
                       size: 15,
                     ))
               ],
@@ -75,10 +77,10 @@ class SplashScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             width: MediaQuery.of(context).size.width * 0.55,
             height: MediaQuery.of(context).size.height * 0.3,
-            child: const Text(
+            child: Text(
               "Get weather updates on the go!",
               style: TextStyle(
-                  color: Color(0xffffffff),
+                  color: MyColors.white,
                   fontWeight: FontWeight.w700,
                   fontSize: 24),
             ),
@@ -95,13 +97,13 @@ class SplashScreen extends StatelessWidget {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                    color: const Color(0xffffffff),
-                    boxShadow: const [
+                    color: MyColors.white,
+                    boxShadow: [
                       BoxShadow(
-                          color: Color(0xffffffff),
+                          color: MyColors.white,
                           blurRadius: 5.0,
                           spreadRadius: 1.0,
-                          offset: Offset(
+                          offset: const Offset(
                             1.0,
                             1.0,
                           ))

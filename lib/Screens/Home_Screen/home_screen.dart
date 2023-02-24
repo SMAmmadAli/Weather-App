@@ -33,9 +33,7 @@ class _HomePageState extends State<HomePage> {
               gradient: LinearGradient(colors: [
             MyColors.blue,
             MyColors.grey,
-          ], begin: Alignment.topCenter, end: Alignment.center
-                  //  radius: 1.5, center: Alignment.topLeft
-                  )),
+          ], begin: Alignment.topCenter, end: Alignment.center)),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,34 +47,45 @@ class _HomePageState extends State<HomePage> {
                       color: MyColors.white,
                     ),
                   ),
-                  title: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 23, vertical: 8),
-                    child: Text(
-                      "Karachi",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: MyColors.white,
-                      ),
+                  title: Container(
+                    padding: const EdgeInsets.only(top: 7),
+                    margin: const EdgeInsets.only(top: 10),
+                    width: double.infinity,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(width: 1.5, color: MyColors.white)),
+                    child: TextField(
+                      controller: myController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Your City",
+                          isDense: true,
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                          hintStyle: TextStyle(
+                              color: MyColors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700)),
                     ),
                   ),
-                  subtitle: Padding(
-                    padding: EdgeInsets.only(left: 15.0),
-                    child: Text(
-                      "Monday, 22 Feb",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: MyColors.white,
-                      ),
-                    ),
-                  ),
-                  trailing: Icon(
-                    CupertinoIcons.ellipsis_vertical,
-                    color: MyColors.white,
-                    size: 25,
-                  ),
+                  trailing: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: InkWell(
+                        onTap: () async {
+                          weather_model = await WeatherService()
+                              .getWeatherDetail(myController.text);
+                          print(weather_model?.main?.temp ?? "MyError");
+                          setState(() {});
+                        },
+                        child: Container(
+                          child: Icon(
+                            CupertinoIcons.search,
+                            color: MyColors.white,
+                            size: 25,
+                          ),
+                        ),
+                      )),
                 ),
                 const SizedBox(
                   height: 10,
@@ -117,7 +126,20 @@ class _HomePageState extends State<HomePage> {
                                   left: 10.0,
                                 ),
                                 child: Text(
-                                  "Rainy Day",
+                                  "Karachi",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: MyColors.white,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10.0,
+                                ),
+                                child: Text(
+                                  "Mon, 22 Feb",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,

@@ -11,13 +11,13 @@ class WeatherService {
     var response = await http.get(uri);
     var jsonResponse = jsonDecode(response.body);
     print(jsonResponse);
-    // try {
-    //   if (jsonResponse.hashCode == 200) {
-    //     return Weather_Model.fromJson(jsonResponse);
-    //   }
-    // } catch (e) {
-    //   throw Exception();
-    // }
+    try {
+      if (jsonResponse.hashCode == 200) {
+        return Weather_Model.fromJson(jsonResponse);
+      }
+    } catch (e) {
+      throw Exception();
+    }
 
     // 75b9969cc7b74e3b941193047232202
     // final queryParameter = {
@@ -42,10 +42,10 @@ class WeatherService {
               // ),
               // ElevatedButton(
               //     onPressed: () async {
-              //       weather_model = await WeatherService()
-              //           .getWeatherDetail(myController.text);
-              //       print(weather_model?.main?.temp ?? "MyError");
-              //       setState(() {});
+                    // weather_model = await WeatherService()
+                    //     .getWeatherDetail(myController.text);
+                    // print(weather_model?.main?.temp ?? "MyError");
+                    // setState(() {});
               //     },
               //     child: const Text("Search")),
               // Text("Temperature: ${weather_model?.main?.temp}"),
