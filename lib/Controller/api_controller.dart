@@ -10,14 +10,18 @@ class WeatherService {
     var uri = Uri.parse(url);
     var response = await http.get(uri);
     var jsonResponse = jsonDecode(response.body);
-    print(jsonResponse);
-    try {
-      if (jsonResponse.hashCode == 200) {
-        return Weather_Model.fromJson(jsonResponse);
-      }
-    } catch (e) {
-      throw Exception();
-    }
+    var userData = Weather_Model.fromJson(jsonResponse);
+    return userData;
+
+    // print(jsonResponse);
+
+    // try {
+    //   if (jsonResponse.hashCode == 200) {
+    //     return Weather_Model.fromJson(jsonResponse);
+    //   }
+    // } catch (e) {
+    //   throw Exception();
+    // }
 
     // 75b9969cc7b74e3b941193047232202
     // final queryParameter = {
@@ -50,3 +54,6 @@ class WeatherService {
               //     child: const Text("Search")),
               // Text("Temperature: ${weather_model?.main?.temp}"),
               // Text("Pressure: ${weather_model?.main?.pressure}")
+
+
+

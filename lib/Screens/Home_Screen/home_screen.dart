@@ -20,8 +20,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController myController = TextEditingController();
   Weather_Model? weather_model;
+
   // Weather_Model? weather_model;
   bool height = false;
+
+  getData() async {
+    weather_model = await WeatherService().getWeatherDetail(myController.text);
+    setState(() {});
+  }
+
+  FToC() {
+    final temp = weather_model?.main?.temp;
+    final toCelsius = (temp! - 32) * 5 / 9;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,21 +83,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                   trailing: Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: InkWell(
-                        onTap: () async {
-                          weather_model = await WeatherService()
-                              .getWeatherDetail(myController.text);
-                          print(weather_model?.main?.temp ?? "MyError");
-                          setState(() {});
-                        },
-                        child: Container(
-                          child: Icon(
-                            CupertinoIcons.search,
+                      child: IconButton(
+                          onPressed: () {
+                            getData();
+
+                            print(weather_model?.main?.pressure ?? "MyError");
+                          },
+                          icon: Icon(
+                            Icons.search,
                             color: MyColors.white,
                             size: 25,
-                          ),
-                        ),
-                      )),
+                          ))),
                 ),
                 const SizedBox(
                   height: 10,
@@ -113,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10.0),
                                 child: Text(
-                                  "21 °C",
+                                  "${weather_model?.main?.temp ?? ""}",
                                   style: TextStyle(
                                     fontSize: 35,
                                     fontWeight: FontWeight.w700,
@@ -126,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                                   left: 10.0,
                                 ),
                                 child: Text(
-                                  "Karachi",
+                                  "${weather_model?.main?.feelsLike ?? ""}",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,
@@ -139,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                                   left: 10.0,
                                 ),
                                 child: Text(
-                                  "Mon, 22 Feb",
+                                  "${weather_model?.sys?.country ?? ""}",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,
@@ -182,20 +190,22 @@ class _HomePageState extends State<HomePage> {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
-                                      children: const [
+                                      children: [
                                         Box(
                                             myIcon: CupertinoIcons.wind,
                                             text: "Wind",
-                                            text2: "13 km/hr"),
+                                            text2:
+                                                "${weather_model?.wind?.speed ?? ""} km/hr"),
                                         Box(
-                                            myIcon:
-                                                CupertinoIcons.cloud_rain_fill,
-                                            text: "Chance of Rain",
-                                            text2: "88%"),
+                                            myIcon: CupertinoIcons.speedometer,
+                                            text: "Pressure",
+                                            text2:
+                                                "${weather_model?.main?.pressure ?? ""}pa"),
                                         Box(
                                             myIcon: CupertinoIcons.drop_fill,
                                             text: "Humidity",
-                                            text2: "24%"),
+                                            text2:
+                                                "${weather_model?.main?.humidity ?? ""}%"),
                                       ],
                                     ),
                                     const SizedBox(
@@ -204,20 +214,22 @@ class _HomePageState extends State<HomePage> {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
-                                      children: const [
+                                      children: [
                                         Box(
-                                            myIcon: CupertinoIcons.wind,
+                                            myIcon: CupertinoIcons.cloud_sun,
                                             text: "Wind",
-                                            text2: "13 km/hr"),
+                                            text2:
+                                                "${weather_model?.clouds?.all ?? ""}%"),
                                         Box(
-                                            myIcon:
-                                                CupertinoIcons.cloud_rain_fill,
-                                            text: "Chance of Rain",
-                                            text2: "88%"),
+                                            myIcon: CupertinoIcons.thermometer,
+                                            text: "Min Temp",
+                                            text2:
+                                                "${weather_model?.main?.tempMin ?? ""}C"),
                                         Box(
-                                            myIcon: CupertinoIcons.drop_fill,
-                                            text: "Humidity",
-                                            text2: "24%"),
+                                            myIcon: CupertinoIcons.thermometer,
+                                            text: "Max Temp",
+                                            text2:
+                                                "${weather_model?.main?.tempMax ?? ""}C"),
                                       ],
                                     ),
                                   ],
@@ -227,20 +239,23 @@ class _HomePageState extends State<HomePage> {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
-                                      children: const [
+                                      children: [
                                         Box(
                                             myIcon: CupertinoIcons.wind,
                                             text: "Wind",
-                                            text2: "13 km/hr"),
+                                            text2:
+                                                "${weather_model?.wind?.speed ?? ""} km/hr"),
                                         Box(
                                             myIcon:
                                                 CupertinoIcons.cloud_rain_fill,
-                                            text: "Chance of Rain",
-                                            text2: "88%"),
+                                            text: "Pressure",
+                                            text2:
+                                                "${weather_model?.main?.pressure ?? ""}pa"),
                                         Box(
                                             myIcon: CupertinoIcons.drop_fill,
                                             text: "Humidity",
-                                            text2: "24%"),
+                                            text2:
+                                                "${weather_model?.main?.humidity ?? ""}%"),
                                       ],
                                     ),
                                   ],
